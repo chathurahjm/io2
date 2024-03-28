@@ -121,6 +121,7 @@ public class vpntest {
             Thread.sleep(900000); // Sleep for 1 second
              //Thread.sleep(3000); // Sleep for 1 second
             Thread.sleep(900000); // Sleep for 1 second
+            Thread.sleep(900000);
             takeScreenHhot("beforeclose");
 
             driver.quit();
