@@ -64,6 +64,8 @@ public class vpntest {
 
         //chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
+        Dimension dimension = new Dimension(1296, 800);
+        driver.manage().window().setSize(dimension);
         driver.manage().window().maximize();
 
            driver.get("https://www.youtube.com/@day2day/playlists");
