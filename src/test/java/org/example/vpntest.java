@@ -50,7 +50,7 @@ public class vpntest {
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36");
-                chromeOptions.setCapability("platform", "win10"); // If this cap isn't specified, it will just get any available one
+                
 
             }
 //             Map prefs = new HashMap();
