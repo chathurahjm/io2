@@ -1,37 +1,28 @@
 package org.example;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
-
 import java.util.Properties;
-
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import java.util.concurrent.TimeUnit;
 
 @Test
 public class vpntest {
@@ -39,38 +30,46 @@ public class vpntest {
     protected WebDriver driver;
 
 
-
     @Test
     public void testActions2() throws InterruptedException {
-  long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
 
-         while (System.currentTimeMillis() - startTime < TimeUnit.HOURS.toMillis(5)) {
+        while (System.currentTimeMillis() - startTime < TimeUnit.HOURS.toMillis(5)) {
 
 
+            ChromeOptions chromeOptions = new ChromeOptions();
+            String osName = System.getProperty("os.name").toLowerCase();
+            if (osName.contains("windows")) {
+                WebDriverManager.chromedriver().setup();
 
-       
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+                //ChromeOptions chromeOptions = new ChromeOptions();
+            } else {
 
-        ChromeOptions chromeOptions = new ChromeOptions();
-             chromeOptions.addArguments("--disable-extensions");
-             chromeOptions.addArguments("--disable-gpu");
-             chromeOptions.addArguments("--no-sandbox");
-             chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11) AppleWebKit/601.1.27 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/601.1.27");
+                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+                chromeOptions.addArguments("--disable-extensions");
+                chromeOptions.addArguments("--disable-gpu");
+                chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36");
+                chromeOptions.setCapability("platform", "win10"); // If this cap isn't specified, it will just get any available one
+
+            }
 //             Map prefs = new HashMap();
 //             prefs.put("profile.default_content_settings.cookies", 2);
 //             chromeOptions.setExperimentalOption("prefs", prefs);
-        try {
+            try {
 
 
-        //chromeOptions.addArguments("--headless");
-        driver = new ChromeDriver(chromeOptions);
-        Dimension dimension = new Dimension(1296, 800);
-        driver.manage().window().setSize(dimension);
-        driver.manage().window().maximize();
+                //chromeOptions.addArguments("--headless");
+                driver = new ChromeDriver(chromeOptions);
+                driver.manage().window().maximize();
 
-           driver.get("https://www.youtube.com/@day2day/playlists");
+                Dimension dimension = new Dimension(800, 600);
+                driver.manage().window().setSize(dimension);
 
-            Thread.sleep(8000); // Sleep
+
+                driver.get("https://www.youtube.com/@day2day/playlists");
+
+                Thread.sleep(8000); // Sleep
 
 
 //            try {
@@ -93,79 +92,81 @@ public class vpntest {
 //            }
 
 
-            String a = driver.getCurrentUrl().toString();
-            System.out.println(a);
+                String a = driver.getCurrentUrl().toString();
+                System.out.println(a);
 
 
-            try {
-                WebElement cookies = driver.findElement(By.xpath("//*[text()='Accept all']"));
-                if(cookies.isDisplayed())
-                {
-                    cookies.click();
-                    Thread.sleep(8000); // Sleep
-                    takeScreenHhot("cookies");
+                try {
+                    WebElement cookies = driver.findElement(By.xpath("//*[text()='Accept all']"));
+                    if (cookies.isDisplayed()) {
+                        cookies.click();
+                        Thread.sleep(8000); // Sleep
+                        takeScreenHhot("cookies");
+                    }
+                } catch (Exception e) {
+
                 }
+
+
+                WebElement element = driver.findElement(By.xpath("(//*[@class='yt-simple-endpoint style-scope ytd-playlist-thumbnail'])[4]"));
+
+                // Simulate pressing the space button on the element
+                element.click();
+                takeScreenHhot("clickPlalit");
+                Thread.sleep(3000);
+                takeScreenHhot("clickPlalitSleep");
+
+                Thread.sleep(900000); // Sleep for 1 second
+                //Thread.sleep(3000); // Sleep for 1 second
+                Thread.sleep(900000); // Sleep for 1 second
+
+                WebElement pause = driver.findElement(By.xpath("(//*[contains(@class,'yt-spec-button-shape-next--call-to-action')])[3]"));
+                if (pause.isDisplayed())
+                {
+                    pause.click();
+                }
+
+
+                Thread.sleep(900000);
+                Thread.sleep(900000);
+
+                takeScreenHhot("beforeclose");
+
+                driver.quit();
+            } catch (Exception e) {
+                System.out.println(e.toString());
             }
-            catch (Exception e)
-            {
 
-            }
-
-
-            WebElement element = driver.findElement(By.xpath("(//*[@class='yt-simple-endpoint style-scope ytd-playlist-thumbnail'])[4]"));
-
-            // Simulate pressing the space button on the element
-            element.click();
-            takeScreenHhot("clickPlalit");
-            Thread.sleep(3000);
-            takeScreenHhot("clickPlalitSleep");
-
-            Thread.sleep(900000); // Sleep for 1 second
-             //Thread.sleep(3000); // Sleep for 1 second
-            Thread.sleep(900000); // Sleep for 1 second
-            Thread.sleep(900000);
-             Thread.sleep(900000);
-             Thread.sleep(900000);
-            takeScreenHhot("beforeclose");
-
-            driver.quit();
         }
-        catch (Exception e)
-        {
-            System.out.println(e.toString());
-        }
-        
-    }
-       
+
     }
 
 
-    public void testActions211() throws InterruptedException {
+    public void testscreen() throws InterruptedException {
         long startTime = System.currentTimeMillis();
 
         while (System.currentTimeMillis() - startTime < TimeUnit.SECONDS.toMillis(10)) {
 
 
             String osName = System.getProperty("os.name").toLowerCase();
-            if (osName.contains("windows"))
-            {
+            if (osName.contains("windows")) {
                 WebDriverManager.chromedriver().setup();
 
                 //ChromeOptions chromeOptions = new ChromeOptions();
-            }
-            else {
+            } else {
 
 
                 System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
                 System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  OS");
-        
+
+
             }
             ChromeOptions chromeOptions = new ChromeOptions();
             //chromeOptions.addArguments("--disable-extensions");
             chromeOptions.addArguments("--disable-gpu");
             chromeOptions.addArguments("--no-sandbox");
             chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36");
-            
+
             driver = new ChromeDriver(chromeOptions);
 
             driver.get("https://whatismyipaddress.com/");
@@ -190,7 +191,7 @@ public class vpntest {
         String currentTimeAsString = currentTime.format(formatter);
 
         // Define the path to save the screenshot
-        Path destination = Paths.get(System.getProperty("user.dir") + "/screenshots/" + currentTimeAsString + "_"+name+".png");
+        Path destination = Paths.get(System.getProperty("user.dir") + "/screenshots/" + currentTimeAsString + "_" + name + ".png");
 
         try {
             // Copy screenshot to the destination
@@ -205,9 +206,7 @@ public class vpntest {
     }
 
 
-
-    public void sendEmail(String filename)
-    {
+    public void sendEmail(String filename) {
 // Recipient's email ID needs to be mentioned.
         String to = "chathurahjm@gmail.com";
 
