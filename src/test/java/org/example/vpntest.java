@@ -50,7 +50,11 @@ public class vpntest {
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36");
-                
+                chromeOptions.add_argument("--disable-blink-features=AutomationControlled") 
+ 
+                chromeOptions.add_experimental_option("excludeSwitches", ["enable-automation"]) 
+ 
+                chromeOptions.add_experimental_option("useAutomationExtension", False) 
 
             }
 //             Map prefs = new HashMap();
@@ -63,7 +67,7 @@ public class vpntest {
                 driver = new ChromeDriver(chromeOptions);
                 driver.manage().window().maximize();
 
-                Dimension dimension = new Dimension(800, 600);
+                Dimension dimension = new Dimension(2400, 1400);
                 driver.manage().window().setSize(dimension);
 
 
@@ -112,10 +116,6 @@ public class vpntest {
 
                 // Simulate pressing the space button on the element
                 element.click();
-                takeScreenHhot("clickPlalit");
-                Thread.sleep(3000);
-                takeScreenHhot("clickPlalitSleep");
-
                 Thread.sleep(900000); // Sleep for 1 second
                 //Thread.sleep(3000); // Sleep for 1 second
                 Thread.sleep(900000); // Sleep for 1 second
@@ -123,7 +123,10 @@ public class vpntest {
                 WebElement pause = driver.findElement(By.xpath("(//*[contains(@class,'yt-spec-button-shape-next--call-to-action')])[3]"));
                 if (pause.isDisplayed())
                 {
+                    takeScreenHhot("atBeforePause");
                     pause.click();
+                    takeScreenHhot("atAfterPause");
+
                 }
 
 
