@@ -52,9 +52,9 @@ public class vpntest {
                 chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36");
                 chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
  
-                chromeOptions.addArguments("excludeSwitches", ["enable-automation"]);
+                chromeOptions.setExperimentalOption("excludeSwitches", "enable-automation");
  
-                chromeOptions.addArguments("useAutomationExtension", False);
+                chromeOptions.setExperimentalOption("useAutomationExtension","False");
 
             }
 //             Map prefs = new HashMap();
