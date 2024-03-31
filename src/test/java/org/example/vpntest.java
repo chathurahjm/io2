@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -46,15 +47,7 @@ public class vpntest {
             } else {
 
                 System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-                chromeOptions.addArguments("--disable-extensions");
-                chromeOptions.addArguments("--disable-gpu");
-                chromeOptions.addArguments("--no-sandbox");
-                chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36");
-                chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
- 
-                chromeOptions.setExperimentalOption("excludeSwitches", "enable-automation");
- 
-                chromeOptions.setExperimentalOption("useAutomationExtension","False");
+
 
             }
 //             Map prefs = new HashMap();
@@ -62,7 +55,14 @@ public class vpntest {
 //             chromeOptions.setExperimentalOption("prefs", prefs);
             try {
 
+                chromeOptions.addArguments("--disable-extensions");
+                //chromeOptions.addArguments("--disable-gpu");
+                chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36");
+                chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
 
+                chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+                chromeOptions.setExperimentalOption("useAutomationExtension", false);
                 //chromeOptions.addArguments("--headless");
                 driver = new ChromeDriver(chromeOptions);
 
