@@ -50,11 +50,11 @@ public class vpntest {
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36");
-                chromeOptions.add_argument("--disable-blink-features=AutomationControlled") 
+                chromeOptions.add_argument("--disable-blink-features=AutomationControlled");
  
-                chromeOptions.add_experimental_option("excludeSwitches", ["enable-automation"]) 
+                chromeOptions.add_experimental_option("excludeSwitches", ["enable-automation"]);
  
-                chromeOptions.add_experimental_option("useAutomationExtension", False) 
+                chromeOptions.add_experimental_option("useAutomationExtension", False);
 
             }
 //             Map prefs = new HashMap();
