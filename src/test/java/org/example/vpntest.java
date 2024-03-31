@@ -70,6 +70,7 @@ public class vpntest {
                 Dimension dimension = new Dimension(2400, 1400);
                 driver.manage().window().setSize(dimension);
 
+//driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") 
 
                 driver.get("https://www.youtube.com/@day2day/playlists");
 
