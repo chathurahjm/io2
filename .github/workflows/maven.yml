@@ -111,6 +111,6 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: jacoco-reports
+        name: jacoco-reports_$(date +'%Y-%m-%dT%H:%M:%S')
         path: /home/linux/
 
