@@ -111,6 +111,6 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: jacoco-reports_${{ github.run_started }}
+        name: jacoco-reports
         path: /home/linux/
 
