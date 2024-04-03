@@ -71,6 +71,10 @@ public class vpntest {
 
 //driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") 
 
+                 driver.get("https://whatismyipaddress.com/");
+            Thread.sleep(3000);
+            takeScreenHhot("ip");
+                
                 driver.get("https://www.youtube.com/@day2day/playlists");
 
                 Thread.sleep(8000); // Sleep
