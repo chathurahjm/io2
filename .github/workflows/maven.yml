@@ -68,10 +68,10 @@ jobs:
     - name: Copy out file from volume
       if: always()
       run: |
-       sudo mkdir /Users/runner/report
-       sudo cp -r /Users/runner/work/iOS/iOS/screenshots/* /Users/runner/report/
-       sudo chown -R runner:runner /Users/runner/report
-       pwd
+        mkdir /Users/runner/report
+        cp -r /Users/runner/work/iOS/iOS/screenshots/* /Users/runner/report/
+        sudo chown -R runner:runner /Users/runner/report
+        pwd
 
     # - name: Commit and Push Changes
     #   if: always()      
@@ -90,5 +90,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: jacoco-reports
-        path: /Users/runner/report/
+        path: /Users/runner/work/iOS/iOS/screenshots/
 
