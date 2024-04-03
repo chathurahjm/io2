@@ -51,26 +51,26 @@ jobs:
       run: Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
       
 
-    - name: Check Chrome Version
-      run: google-chrome --version
+  #  - name: Check Chrome Version
+   #   run: google-chrome --version
 
 
-    - name: Verify installation
-      run: chromedriver --version
+  #  - name: Verify installation
+   #   run: chromedriver --version
     
     # - name: Build with Maven
     #   run: mvn clean install -B
 
     - name: test with Maven
       id: mvncmd
-      run: sudo xvfb-run -a mvn -B clean test --fail-at-end
+      run: mvn -B clean test --fail-at-end
 
     - name: Copy out file from volume
       if: always()
       run: |
-       sudo mkdir /home/linux
-       sudo cp -r /home/runner/work/gitActionWindows/gitActionWindows/screenshots/* /home/linux/
-       sudo chown -R runner:runner /home/linux/
+       sudo mkdir /Users/runner/report
+       sudo cp -r /Users/runner/work/iOS/iOS/screenshots/* /Users/runner/report/
+       sudo chown -R runner:runner /Users/runner/report
        pwd
 
     # - name: Commit and Push Changes
@@ -90,5 +90,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: jacoco-reports
-        path: /home/linux/
+        path: /Users/runner/report/
 
