@@ -41,7 +41,7 @@ jobs:
 
              sudo chmod -R 777 /usr/local/opt/openvpn/sbin/openvpn
              # sudo sed -i 's/auth-user-pass/auth-user-pass credentials/g' data.ovpn
-
+              sed -i '' 's/auth-user-pass/auth-user-pass credentials/g' data.ovpn
              sudo nohup openvpn data.ovpn &
              curl ifconfig.me
 
