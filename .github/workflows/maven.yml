@@ -65,13 +65,6 @@ jobs:
       id: mvncmd
       run: mvn -B clean test --fail-at-end
 
-    - name: Copy out file from volume
-      if: always()
-      run: |
-        mkdir /Users/runner/report
-        cp -r /Users/runner/work/iOS/iOS/screenshots/* /Users/runner/report/
-        sudo chown -R runner:runner /Users/runner/report
-        pwd
 
     # - name: Commit and Push Changes
     #   if: always()      
