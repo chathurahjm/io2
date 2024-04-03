@@ -33,7 +33,7 @@ jobs:
 
     - name: Install VPN
       run: | 
-             sudo brew install openvpn
+             brew install openvpn
              cd src
              cd data
              ls
